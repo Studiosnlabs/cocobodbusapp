@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -20,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Driver_schedule extends AppCompatActivity {
 
@@ -489,6 +491,365 @@ public class Driver_schedule extends AppCompatActivity {
 
 
 
+    public void eveningParseIt(boolean isChecked,TextView dayDate){
+
+        if (isChecked){
+            String mondayCheck=dayDate.getText().toString();
+
+            ParseQuery<ParseObject> scheduleCheck= ParseQuery.getQuery("Schedule");
+            scheduleCheck.whereEqualTo("Bus",ParseUser.getCurrentUser().getUsername());
+            scheduleCheck.whereEqualTo("date",mondayCheck);
+
+            scheduleCheck.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e==null){
+                        Log.d(TAG, "done: object"+objects.size());
+
+                        if (objects.size()>0){
+
+                            for (ParseObject object:objects) {
+                                String recID=object.getObjectId();
+                                Log.d(TAG, "done: objectID"+recID);
+
+                                ParseQuery<ParseObject> scheduleCheck2=ParseQuery.getQuery("Schedule");
+                                scheduleCheck2.whereEqualTo("objectId",recID);
+
+                                scheduleCheck2.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> objects, ParseException e) {
+                                        if (objects.size()>0){
+                                            for (ParseObject object:objects) {
+
+                                                object.put("evening",true);
+                                                object.saveInBackground();
+
+                                            }
+
+
+                                        }
+                                    }
+                                });
+
+
+
+
+
+                            }
+
+                        }
+                        else{
+
+                            try {
+                                ParseObject schedule = new ParseObject("Schedule");
+                                schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
+                                schedule.put("evening",true);
+                                schedule.put("date",mondayCheck);
+
+
+                                schedule.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException en) {
+                                        if (en==null){
+                                            Log.d(TAG, "done: update successful");
+                                        }
+                                        else{
+                                            Log.d(TAG, "done: update failed");
+                                            Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                                        }
+                                    }
+                                });
+
+
+
+                            } catch (Exception en) {
+                                en.printStackTrace();
+                                Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                            }
+
+
+                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
+
+                        }
+
+                    }
+                }
+            });
+
+
+
+        }
+        else if (!isChecked){
+
+            String mondayCheck=mondayDate.getText().toString();
+
+            ParseQuery<ParseObject> scheduleCheck= ParseQuery.getQuery("Schedule");
+            scheduleCheck.whereEqualTo("Bus",ParseUser.getCurrentUser().getUsername());
+            scheduleCheck.whereEqualTo("date",mondayCheck);
+
+            scheduleCheck.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e==null){
+                        Log.d(TAG, "done: object"+objects.size());
+
+                        if (objects.size()>0){
+
+                            for (ParseObject object:objects) {
+                                String recID=object.getObjectId();
+                                Log.d(TAG, "done: objectID"+recID);
+
+                                ParseQuery<ParseObject> scheduleCheck2=ParseQuery.getQuery("Schedule");
+                                scheduleCheck2.whereEqualTo("objectId",recID);
+
+                                scheduleCheck2.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> objects, ParseException e) {
+                                        if (objects.size()>0){
+                                            for (ParseObject object:objects) {
+
+                                                object.put("evening",false);
+                                                object.saveInBackground();
+
+                                            }
+
+
+                                        }
+                                    }
+                                });
+
+
+
+
+
+                            }
+
+                        }
+                        else{
+
+                            try {
+                                ParseObject schedule = new ParseObject("Schedule");
+                                schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
+                                schedule.put("evening",false);
+                                schedule.put("date",mondayCheck);
+
+
+                                schedule.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException en) {
+                                        if (en==null){
+                                            Log.d(TAG, "done: update successful");
+                                        }
+                                        else{
+                                            Log.d(TAG, "done: update failed");
+                                            Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                                        }
+                                    }
+                                });
+
+
+
+                            } catch (Exception en) {
+                                en.printStackTrace();
+                                Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                            }
+
+
+                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
+
+                        }
+
+                    }
+                }
+            });
+
+        }
+
+
+    }
+
+
+    public void morningParseIt(boolean isChecked,TextView dayDate){
+
+        if (isChecked){
+            String mondayCheck=dayDate.getText().toString();
+
+            ParseQuery<ParseObject> scheduleCheck= ParseQuery.getQuery("Schedule");
+            scheduleCheck.whereEqualTo("Bus",ParseUser.getCurrentUser().getUsername());
+            scheduleCheck.whereEqualTo("date",mondayCheck);
+
+            scheduleCheck.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e==null){
+                        Log.d(TAG, "done: object"+objects.size());
+
+                        if (objects.size()>0){
+
+                            for (ParseObject object:objects) {
+                                String recID=object.getObjectId();
+                                Log.d(TAG, "done: objectID"+recID);
+
+                                ParseQuery<ParseObject> scheduleCheck2=ParseQuery.getQuery("Schedule");
+                                scheduleCheck2.whereEqualTo("objectId",recID);
+
+                                scheduleCheck2.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> objects, ParseException e) {
+                                        if (objects.size()>0){
+                                            for (ParseObject object:objects) {
+
+                                                object.put("morning",true);
+                                                object.saveInBackground();
+
+                                            }
+
+
+                                        }
+                                    }
+                                });
+
+
+
+
+
+                            }
+
+                        }
+                        else{
+
+                            try {
+                                ParseObject schedule = new ParseObject("Schedule");
+                                schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
+                                schedule.put("morning",true);
+                                schedule.put("date",mondayCheck);
+
+
+                                schedule.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException en) {
+                                        if (en==null){
+                                            Log.d(TAG, "done: update successful");
+                                        }
+                                        else{
+                                            Log.d(TAG, "done: update failed");
+                                            Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                                        }
+                                    }
+                                });
+
+
+
+                            } catch (Exception en) {
+                                en.printStackTrace();
+                                Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                            }
+
+
+                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
+
+                        }
+
+                    }
+                }
+            });
+
+
+
+        }
+        else if (!isChecked){
+
+            String mondayCheck=mondayDate.getText().toString();
+
+            ParseQuery<ParseObject> scheduleCheck= ParseQuery.getQuery("Schedule");
+            scheduleCheck.whereEqualTo("Bus",ParseUser.getCurrentUser().getUsername());
+            scheduleCheck.whereEqualTo("date",mondayCheck);
+
+            scheduleCheck.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e==null){
+                        Log.d(TAG, "done: object"+objects.size());
+
+                        if (objects.size()>0){
+
+                            for (ParseObject object:objects) {
+                                String recID=object.getObjectId();
+                                Log.d(TAG, "done: objectID"+recID);
+
+                                ParseQuery<ParseObject> scheduleCheck2=ParseQuery.getQuery("Schedule");
+                                scheduleCheck2.whereEqualTo("objectId",recID);
+
+                                scheduleCheck2.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> objects, ParseException e) {
+                                        if (objects.size()>0){
+                                            for (ParseObject object:objects) {
+
+                                                object.put("morning",false);
+                                                object.saveInBackground();
+
+                                            }
+
+
+                                        }
+                                    }
+                                });
+
+
+
+
+
+                            }
+
+                        }
+                        else{
+
+                            try {
+                                ParseObject schedule = new ParseObject("Schedule");
+                                schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
+                                schedule.put("morning",false);
+                                schedule.put("date",mondayCheck);
+
+
+                                schedule.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException en) {
+                                        if (en==null){
+                                            Log.d(TAG, "done: update successful");
+                                        }
+                                        else{
+                                            Log.d(TAG, "done: update failed");
+                                            Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                                        }
+                                    }
+                                });
+
+
+
+                            } catch (Exception en) {
+                                en.printStackTrace();
+                                Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
+                            }
+
+
+                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
+
+                        }
+
+                    }
+                }
+            });
+
+        }
+
+
+    }
+
 
 
 
@@ -521,69 +882,15 @@ public class Driver_schedule extends AppCompatActivity {
         thursdayDate(thursdayDate);
         fridayDate(fridayDate);
 
+        /*monday switches*/
+
         mondayMorning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked){
-                    try {
-                        ParseObject schedule = new ParseObject("Schedule");
-                        schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                        schedule.put("date","today");
-                        schedule.put("morning",true);
-                        schedule.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                if (e==null){
-                                    Log.d(TAG, "done: update successful");
-                                }
-                                else{
-                                    Log.d(TAG, "done: update failed");
-                                    Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                                }
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                    }
+          morningParseIt(isChecked,mondayDate);
 
-
-                    Toast.makeText(Driver_schedule.this, "Monday morning set to available", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
-                }
-                else if (!isChecked){
-
-                    try {
-                        ParseObject schedule = new ParseObject("Schedule");
-                        schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                        schedule.put("date","today");
-                        schedule.put("morning",false);
-                        schedule.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                if (e==null){
-                                    Log.d(TAG, "done: update successful");
-                                }
-                                else{
-                                    Log.d(TAG, "done: update failed");
-                                    Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                                }
-                            }
-                        });
-
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                    }
-
-
-                    Toast.makeText(Driver_schedule.this, "Monday morning set to unavailable", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onCheckedChanged: Monday morning set to unavailable ");
-
-                }
+                Toast.makeText(Driver_schedule.this, "Monday morning schedule updated", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -594,66 +901,96 @@ public class Driver_schedule extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked){
-                    try {
-                        ParseObject schedule = new ParseObject("Schedule");
-                        schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                        schedule.put("evening",true);
+             eveningParseIt(isChecked,mondayDate);
 
-                        schedule.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                if (e==null){
-                                    Log.d(TAG, "done: update successful");
-                                }
-                                else{
-                                    Log.d(TAG, "done: update failed");
-                                    Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                                }
-                            }
-                        });
+                Toast.makeText(Driver_schedule.this, "Monday evening schedule updated", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
 
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                    }
+        /*tuesday switches*/
 
 
-                    Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
-                }
-                else if (!isChecked){
-                    try {
-                        ParseObject schedule = new ParseObject("Schedule");
-                        schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                        schedule.put("evening",false);
+        tuesdayMorning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                        schedule.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                if (e==null){
-                                    Log.d(TAG, "done: update successful");
-                                }
-                                else{
-                                    Log.d(TAG, "done: update failed");
-                                    Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                                }
-                            }
-                        });
+                morningParseIt(isChecked,tuesdayDate);
+
+                Toast.makeText(Driver_schedule.this, "Tuesday morning schedule updated", Toast.LENGTH_SHORT).show();
 
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.d(TAG, "onCheckedChanged: something went wrong,check internet connection");
-                    }
+            }
+        });
 
 
-                    Toast.makeText(Driver_schedule.this, "Monday evening set to unavailable", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onCheckedChanged: Monday morning set to unavailable ");
+        tuesdayEvening.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                }
+                eveningParseIt(isChecked,tuesdayDate);
+
+                Toast.makeText(Driver_schedule.this, "Tuesday evening schedule updated", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+        /*wednesday switches*/
+
+        wednesdayMorning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                morningParseIt(isChecked,wednesdayDate);
+
+                Toast.makeText(Driver_schedule.this, "Wednesday morning schedule updated", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+        wednesdayEvening.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                eveningParseIt(isChecked,wednesdayDate);
+
+                Toast.makeText(Driver_schedule.this, "Wednesday evening schedule updated", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+
+        /*thursday switches*/
+
+        thursdayMorning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                morningParseIt(isChecked,thursdayDate);
+
+                Toast.makeText(Driver_schedule.this, "Thursday morning schedule updated", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+        thursdayEvening.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                eveningParseIt(isChecked,thursdayDate);
+
+                Toast.makeText(Driver_schedule.this, "Thursday evening schedule updated", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -662,11 +999,32 @@ public class Driver_schedule extends AppCompatActivity {
 
 
 
+        /*friday switches*/
+
+        fridayMorning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                morningParseIt(isChecked,fridayDate);
+
+                Toast.makeText(Driver_schedule.this, "Friday morning schedule updated", Toast.LENGTH_SHORT).show();
 
 
+            }
+        });
 
 
+        fridayEvening.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+                eveningParseIt(isChecked,fridayDate);
+
+                Toast.makeText(Driver_schedule.this, "Friday evening schedule updated", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
 
 
