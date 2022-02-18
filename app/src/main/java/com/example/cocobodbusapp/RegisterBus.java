@@ -31,12 +31,14 @@ public class RegisterBus extends AppCompatActivity {
     EditText driverNameET;
     EditText passwordET;
     EditText confirmPasswordET;
+    EditText destinationET;
 
 
     String vehicleRegistration;
     String busDivision;
     String driverName;
     String password;
+    String destination;
 
 
     public void passwordCheck(String password_1,String password_2){
@@ -66,6 +68,7 @@ public class RegisterBus extends AppCompatActivity {
 
         vehicleRegistration=vehicleRegistrationET.getText().toString().toUpperCase();
         driverName=driverNameET.getText().toString();
+        destination=destinationET.getText().toString();
 
 
         ParseUser bus = new ParseUser();
@@ -73,6 +76,7 @@ public class RegisterBus extends AppCompatActivity {
         bus.setPassword(password);
         bus.put("driverName",driverName);
         bus.put("division",busDivision);
+        bus.put("destination",destination);
 
         bus.signUpInBackground(new SignUpCallback() {
             @Override
@@ -102,6 +106,7 @@ public class RegisterBus extends AppCompatActivity {
         driverNameET=findViewById(R.id.driversnameET);
         passwordET=findViewById(R.id.passwordET);
         confirmPasswordET=findViewById(R.id.confirmpasswordET);
+        destinationET=findViewById(R.id.destinationET);
         Button signupBtn=findViewById(R.id.signUpBtn);
 
 

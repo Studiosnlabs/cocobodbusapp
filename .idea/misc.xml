@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/drawable/black_round_button.xml" value="0.21388888888888888" />
+        <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/drawable/datelabelbg.xml" value="0.15625" />
+        <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/drawable/daylabelbg.xml" value="0.15625" />
         <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21388888888888888" />
         <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/drawable/textview_border.xml" value="0.21388888888888888" />
+        <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/layout/activity_driver_schedule.xml" value="0.22" />
+        <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/layout/activity_register.xml" value="0.1213768115942029" />
         <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/layout/activity_register_bus.xml" value="0.22" />
         <entry key="..\:/Users/hp/Desktop/COCOBODBUSAPP/app/src/main/res/layout/activity_register_bus_set_destination.xml" value="0.22" />

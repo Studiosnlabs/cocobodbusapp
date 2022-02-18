@@ -56,15 +56,15 @@
                 android:inputType="text"
                 android:padding="15dp" />
 
-            <TextView
-                android:layout_marginTop="15dp"
-                android:layout_below="@id/vehicleVerifiacationET"
-                android:id="@+id/divisionLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginStart="30dp"
-                android:text="Division" />
+                <TextView
+                    android:id="@+id/divisionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vehicleVerifiacationET"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Division"
+                    android:textSize="20sp" />
 
                 <Spinner
                     android:id="@+id/divisionET"
@@ -78,12 +78,34 @@
                     android:inputType="text"
                     android:padding="15dp" />
 
+                <TextView
+                    android:id="@+id/destinationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divisionET"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Destination"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/destinationET"
+                    android:layout_below="@+id/destinationLabel"
+                    android:layout_width="328dp"
+                    android:layout_height="56dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/textview_border"
+                    android:hint="eg. Kasoa"
+                    android:inputType="text"
+                    android:padding="15dp" />
+
 
                 <TextView
                     android:id="@+id/drivernameLbael"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/divisionET"
+                    android:layout_below="@id/destinationET"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="15dp"
                     android:text="DRIVERS FULL NAME"

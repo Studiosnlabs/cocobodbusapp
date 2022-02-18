@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Driver_schedule">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Container">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/Welcome"
+            android:text="Welcome,"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/driverName"
+            android:layout_marginLeft="15dp"
+            android:text="Mr.Kwabena Ntim"
+            android:layout_below="@+id/Welcome"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instruction"
+            android:layout_marginLeft="25dp"
+            android:text="Please select your available times"
+            android:layout_below="@+id/driverName"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/allWeekLabel"
+            android:layout_marginLeft="25dp"
+            android:text="All Week"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/instruction"
+            />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/allWeekSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/allWeekLabel"
+            android:layout_alignParentEnd="true"
+            android:textOff="off"
+            android:textOn="on"
+            app:showText="true" />
+
+        <ScrollView
+            android:layout_below="@+id/allWeekSwitch"
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/cardsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mondayCard"
+            android:layout_width="323dp"
+            android:layout_height="103dp"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mondayItemContainer">
+
+                <RelativeLayout
+                    android:id="@+id/Monday"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/daylabelbg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="MON"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/mondayDateContainer"
+                    android:layout_width="214dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/datelabelbg"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/mondayDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="14TH FEBRUARY 2022"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="63dp"
+                    android:id="@+id/morningSwitchContainer"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mondayDateContainer"
+                    android:layout_alignStart="@id/mondayDateContainer"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/morningSwitchLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MORNING"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/mondayMorningSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/morningSwitchLabel"
+                        android:textOff="off"
+                        android:textOn="on"
+                        app:showText="true" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="63dp"
+                    android:id="@+id/eveningSwitchContainer"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mondayDateContainer"
+                    android:layout_alignEnd="@id/mondayDateContainer"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/mondayEveningSwitchLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EVENING"
+                        android:textSize="10sp"
+                        android:textColor="@color/black" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/mondayEveningSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mondayEveningSwitchLabel"
+                        android:textOff="off"
+                        android:textOn="on"
+                        app:showText="true" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+<!--tuesday-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tuesdayCard"
+                    android:layout_width="323dp"
+                    android:layout_height="103dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/mondayCard"
+                    android:layout_centerHorizontal="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tuesdayItemContainer">
+
+                        <RelativeLayout
+                            android:id="@+id/Tuesday"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/daylabelbg">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="TUE"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/tuesdayDateContainer"
+                            android:layout_width="214dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/datelabelbg"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/tuesdayDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14TH FEBRUARY 2022"
+                                android:layout_centerHorizontal="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/tuesdaySwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tuesdayDateContainer"
+                            android:layout_alignStart="@id/tuesdayDateContainer"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/tuesdayMorningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MORNING"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/tuesdayMorningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tuesdayMorningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/tuesdayEveningSwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tuesdayDateContainer"
+                            android:layout_alignEnd="@id/tuesdayDateContainer"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/tuesdayEveningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EVENING"
+                                android:textSize="10sp"
+                                android:textColor="@color/black" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/tuesdayEveningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tuesdayEveningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <!--wednesday-->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/wednesdayCard"
+                    android:layout_width="323dp"
+                    android:layout_height="103dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/tuesdayCard"
+                    android:layout_centerHorizontal="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/wednesdayItemContainer">
+
+                        <RelativeLayout
+                            android:id="@+id/Wednesday"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/daylabelbg">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="WED"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/wednesdayDateContainer"
+                            android:layout_width="214dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/datelabelbg"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/wednesdayDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14TH FEBRUARY 2022"
+                                android:layout_centerHorizontal="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/wednesdaySwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/wednesdayDateContainer"
+                            android:layout_alignStart="@id/wednesdayDateContainer"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/wednesdayMorningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MORNING"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/wednesdayMorningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/wednesdayMorningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/wednesdayEveningSwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/wednesdayDateContainer"
+                            android:layout_alignEnd="@id/wednesdayDateContainer"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/wednesdayEveningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EVENING"
+                                android:textSize="10sp"
+                                android:textColor="@color/black" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/wednesdayEveningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/wednesdayEveningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <!--thursday-->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/thursdayCard"
+                    android:layout_width="323dp"
+                    android:layout_height="103dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/wednesdayCard"
+                    android:layout_centerHorizontal="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/thursdayItemContainer">
+
+                        <RelativeLayout
+                            android:id="@+id/Thursday"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/daylabelbg">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="THU"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/thursdayDateContainer"
+                            android:layout_width="214dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/datelabelbg"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/thursdayDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14TH FEBRUARY 2022"
+                                android:layout_centerHorizontal="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/thursdaySwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/thursdayDateContainer"
+                            android:layout_alignStart="@id/thursdayDateContainer"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/thursdayMorningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MORNING"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/thursdayMorningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/thursdayMorningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/thursdayEveningSwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/thursdayDateContainer"
+                            android:layout_alignEnd="@id/thursdayDateContainer"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/thursdayEveningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EVENING"
+                                android:textSize="10sp"
+                                android:textColor="@color/black" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/thursdayEveningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/thursdayEveningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <!--friday-->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fridayCard"
+                    android:layout_width="323dp"
+                    android:layout_marginBottom="100dp"
+                    android:layout_height="103dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/thursdayCard"
+                    android:layout_centerHorizontal="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/fridayItemContainer">
+
+                        <RelativeLayout
+                            android:id="@+id/Friday"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/daylabelbg">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="FRI"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/fridayDateContainer"
+                            android:layout_width="214dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/datelabelbg"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/fridayDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14TH FEBRUARY 2022"
+                                android:layout_centerHorizontal="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/fridaySwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fridayDateContainer"
+                            android:layout_alignStart="@id/fridayDateContainer"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/fridayMorningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MORNING"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/fridayMorningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/fridayMorningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="63dp"
+                            android:id="@+id/fridayEveningSwitchContainer"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fridayDateContainer"
+                            android:layout_alignEnd="@id/fridayDateContainer"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/fridayEveningSwitchLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EVENING"
+                                android:textSize="10sp"
+                                android:textColor="@color/black" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/fridayEveningSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/fridayEveningSwitchLabel"
+                                android:textOff="off"
+                                android:textOn="on"
+                                app:showText="true" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </RelativeLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
