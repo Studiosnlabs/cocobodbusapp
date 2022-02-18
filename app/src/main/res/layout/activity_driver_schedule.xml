@@ -107,7 +107,7 @@
                 <RelativeLayout
                     android:id="@+id/mondayDateContainer"
                     android:layout_width="214dp"
-                    android:layout_height="18dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/datelabelbg"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="10dp">
@@ -224,7 +224,7 @@
                         <RelativeLayout
                             android:id="@+id/tuesdayDateContainer"
                             android:layout_width="214dp"
-                            android:layout_height="18dp"
+                            android:layout_height="20dp"
                             android:background="@drawable/datelabelbg"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="10dp">
@@ -233,10 +233,10 @@
                                 android:id="@+id/tuesdayDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="14TH FEBRUARY 2022"
                                 android:layout_centerHorizontal="true"
-                                android:textSize="15sp"
-                                android:textColor="@color/white" />
+                                android:text="14TH FEBRUARY 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
                         </RelativeLayout>
 
@@ -342,7 +342,7 @@
                         <RelativeLayout
                             android:id="@+id/wednesdayDateContainer"
                             android:layout_width="214dp"
-                            android:layout_height="18dp"
+                            android:layout_height="20dp"
                             android:background="@drawable/datelabelbg"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="10dp">
@@ -351,10 +351,10 @@
                                 android:id="@+id/wednesdayDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="14TH FEBRUARY 2022"
                                 android:layout_centerHorizontal="true"
-                                android:textSize="15sp"
-                                android:textColor="@color/white" />
+                                android:text="14TH FEBRUARY 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
                         </RelativeLayout>
 
@@ -461,7 +461,7 @@
                         <RelativeLayout
                             android:id="@+id/thursdayDateContainer"
                             android:layout_width="214dp"
-                            android:layout_height="18dp"
+                            android:layout_height="20dp"
                             android:background="@drawable/datelabelbg"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="10dp">
@@ -470,10 +470,10 @@
                                 android:id="@+id/thursdayDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="14TH FEBRUARY 2022"
                                 android:layout_centerHorizontal="true"
-                                android:textSize="15sp"
-                                android:textColor="@color/white" />
+                                android:text="14TH FEBRUARY 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
                         </RelativeLayout>
 
@@ -580,19 +580,19 @@
                         <RelativeLayout
                             android:id="@+id/fridayDateContainer"
                             android:layout_width="214dp"
-                            android:layout_height="18dp"
-                            android:background="@drawable/datelabelbg"
+                            android:layout_height="20dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/datelabelbg">
 
                             <TextView
                                 android:id="@+id/fridayDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="14TH FEBRUARY 2022"
                                 android:layout_centerHorizontal="true"
-                                android:textSize="15sp"
-                                android:textColor="@color/white" />
+                                android:text="14TH FEBRUARY 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
                         </RelativeLayout>
 
