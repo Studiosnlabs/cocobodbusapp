@@ -2,8 +2,10 @@ package com.example.cocobodbusapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -521,7 +523,7 @@ public class Driver_schedule extends AppCompatActivity {
                                         if (objects.size()>0){
                                             for (ParseObject object:objects) {
 
-                                                object.put("evening",true);
+                                                object.put("evening","Available");
                                                 object.saveInBackground();
 
                                             }
@@ -543,7 +545,7 @@ public class Driver_schedule extends AppCompatActivity {
                             try {
                                 ParseObject schedule = new ParseObject("Schedule");
                                 schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                                schedule.put("evening",true);
+                                schedule.put("evening","Available");
                                 schedule.put("date",mondayCheck);
 
 
@@ -609,7 +611,7 @@ public class Driver_schedule extends AppCompatActivity {
                                         if (objects.size()>0){
                                             for (ParseObject object:objects) {
 
-                                                object.put("evening",false);
+                                                object.put("evening","Unavailable");
                                                 object.saveInBackground();
 
                                             }
@@ -631,7 +633,7 @@ public class Driver_schedule extends AppCompatActivity {
                             try {
                                 ParseObject schedule = new ParseObject("Schedule");
                                 schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                                schedule.put("evening",false);
+                                schedule.put("evening","Unavailable");
                                 schedule.put("date",mondayCheck);
 
 
@@ -701,7 +703,7 @@ public class Driver_schedule extends AppCompatActivity {
                                         if (objects.size()>0){
                                             for (ParseObject object:objects) {
 
-                                                object.put("morning",true);
+                                                object.put("morning","Available");
                                                 object.saveInBackground();
 
                                             }
@@ -723,7 +725,7 @@ public class Driver_schedule extends AppCompatActivity {
                             try {
                                 ParseObject schedule = new ParseObject("Schedule");
                                 schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                                schedule.put("morning",true);
+                                schedule.put("morning","Available");
                                 schedule.put("date",mondayCheck);
 
 
@@ -789,7 +791,7 @@ public class Driver_schedule extends AppCompatActivity {
                                         if (objects.size()>0){
                                             for (ParseObject object:objects) {
 
-                                                object.put("morning",false);
+                                                object.put("morning","Unavailable");
                                                 object.saveInBackground();
 
                                             }
@@ -811,7 +813,7 @@ public class Driver_schedule extends AppCompatActivity {
                             try {
                                 ParseObject schedule = new ParseObject("Schedule");
                                 schedule.put("Bus", ParseUser.getCurrentUser().getUsername());
-                                schedule.put("morning",false);
+                                schedule.put("morning","Unavailable");
                                 schedule.put("date",mondayCheck);
 
 
@@ -859,6 +861,7 @@ public class Driver_schedule extends AppCompatActivity {
         setContentView(R.layout.activity_driver_schedule);
 
 
+        TextView Logout=findViewById(R.id.logout);
 
         mondayMorning=findViewById(R.id.mondayMorningSwitch);
         mondayEvening=findViewById(R.id.mondayEveningSwitch);
@@ -875,12 +878,27 @@ public class Driver_schedule extends AppCompatActivity {
         wednesdayDate=findViewById(R.id.wednesdayDate);
         thursdayDate=findViewById(R.id.thursdayDate);
         fridayDate=findViewById(R.id.fridayDate);
+        TextView profileName=findViewById(R.id.profileName);
 
         mondayDate(mondayDate);
         tuesdayDate(tuesdayDate);
         wednesdayDate(wednesdayDate);
         thursdayDate(thursdayDate);
         fridayDate(fridayDate);
+
+
+
+        profileName.setText(ParseUser.getCurrentUser().getUsername());
+
+
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                Intent intent = new Intent(Driver_schedule.this, Login_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         /*monday switches*/
 

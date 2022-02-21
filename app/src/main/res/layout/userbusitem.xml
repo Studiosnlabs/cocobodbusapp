@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/VehicleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/buscocoa" />
+
+                <TextView
+                    android:id="@+id/VehicleTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/VehicleImage"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="GT-3244-21"
+                    android:textColor="#262626"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/unFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/VehicleImage"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/ic_baseline_star_border_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/unFavorite"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="8dp"
+                    android:text="Favorite"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/Favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/VehicleImage"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/ic_baseline_star_24"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/morningStatusLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/VehicleTitle"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="16dp"
+                    android:drawablePadding="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Morning:" />
+
+                <TextView
+                    android:id="@+id/morningStatusAvailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/VehicleTitle"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/morningStatusLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="AVAILABLE"
+                    android:textColor="#4CAF50"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/morningStatusUnavailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/VehicleTitle"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/morningStatusLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="UNAVAILABLE"
+                    android:textColor="#E80E0E"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/morningStatusUndefined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/VehicleTitle"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/morningStatusLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Undefined"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/eveningStatusLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/morningStatusLabel"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="16dp"
+                    android:drawablePadding="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Evening:" />
+
+                <TextView
+                    android:id="@+id/eveningStatusAvailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/morningStatusLabel"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/eveningStatusLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="AVAILABLE"
+                    android:textColor="#4CAF50"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/eveningStatusUnavailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/morningStatusLabel"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/eveningStatusLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="AVAILABLE"
+                    android:textColor="#E80E0E"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/eveningStatusUndefined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/morningStatusLabel"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/eveningStatusLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Undefined"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/driverLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/eveningStatusLabel"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Driver:" />
+
+                <TextView
+                    android:id="@+id/driverNameDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/eveningStatusLabel"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/driverLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Mr.Komson" />
+
+                <TextView
+                    android:id="@+id/locationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/driverLabel"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Location:" />
+
+                <TextView
+                    android:id="@+id/locationNameDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/driverNameDisplay"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/locationLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Madina" />
+
+                <TextView
+                    android:id="@+id/divisionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/locationLabel"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Division:" />
+
+                <TextView
+                    android:id="@+id/divisionNameDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/locationLabel"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/divisionLabel"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="CHED" />
+
+                <TextView
+                    android:id="@+id/trackBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divisionLabel"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="TRACK" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

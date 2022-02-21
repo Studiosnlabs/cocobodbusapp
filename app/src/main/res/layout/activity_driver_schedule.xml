@@ -11,10 +11,14 @@
         android:layout_height="match_parent"
         android:id="@+id/Container">
 
+        <include android:id="@+id/driverToolbar" layout="@layout/snippet_top_toolbar"></include>
+
         <TextView
+            android:layout_below="@+id/driverToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/Welcome"
             android:text="Welcome,"/>
 
@@ -28,13 +32,12 @@
             />
 
         <TextView
+            android:id="@+id/instruction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/instruction"
-            android:layout_marginLeft="25dp"
-            android:text="Please select your available times"
             android:layout_below="@+id/driverName"
-            />
+            android:layout_marginLeft="25dp"
+            android:text="Please select your available times" />
 
         <TextView
             android:layout_width="wrap_content"

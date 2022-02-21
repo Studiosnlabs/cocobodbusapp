@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -36,7 +37,16 @@ public class Login_Activity extends AppCompatActivity {
         busVerificationNumber=findViewById(R.id.loginVehicleVerificationET);
         loginPassword=findViewById(R.id.loginPasswordET);
         Button loginBtn=findViewById(R.id.loginBtn);
+        TextView register=findViewById(R.id.registerBtn);
 
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login_Activity.this, RegisterBus.class);
+                startActivity(intent);
+            }
+        });
 
         if (ParseUser.getCurrentUser() != null){
             NextIntent();

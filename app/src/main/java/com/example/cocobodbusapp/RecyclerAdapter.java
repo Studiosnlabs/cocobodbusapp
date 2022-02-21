@@ -1,0 +1,83 @@
+package com.example.cocobodbusapp;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+    private static final String TAG = "Bus feed list Adapter";
+
+    ArrayList<BusFeed> arrayList;
+
+    public RecyclerAdapter(ArrayList<BusFeed> arrayList) {
+        this.arrayList = arrayList;
+    }
+
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.userbusitem, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        BusFeed busFeed = arrayList.get(position);
+
+
+        holder.vehicleImage.setImageBitmap(busFeed.getVehicleImage());
+        holder.vehicleTitle.setText(busFeed.getVehicleTitle());
+        holder.morningStatus.setText(busFeed.getMorningStatus());
+        holder.eveningStatus.setText(busFeed.getEveningStatus());
+        holder.driverName.setText(busFeed.getDriverName());
+        holder.location.setText(busFeed.getLocation());
+        holder.division.setText(busFeed.getDivision());
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return arrayList.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView vehicleImage;
+        TextView vehicleTitle;
+        TextView morningStatus;
+        TextView eveningStatus;
+        TextView driverName;
+        TextView location;
+        TextView division;
+        TextView trackBtn;
+        ImageView favoriteBtn;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            vehicleImage = itemView.findViewById(R.id.VehicleImage);
+            vehicleTitle = itemView.findViewById(R.id.VehicleTitle);
+            morningStatus = itemView.findViewById(R.id.morningStatusUndefined);
+            eveningStatus = itemView.findViewById(R.id.eveningStatusUndefined);
+            driverName = itemView.findViewById(R.id.driverNameDisplay);
+            location = itemView.findViewById(R.id.locationNameDisplay);
+            division = itemView.findViewById(R.id.divisionNameDisplay);
+            trackBtn = itemView.findViewById(R.id.trackBtn);
+            favoriteBtn = itemView.findViewById(R.id.unFavorite);
+
+
+        }
+    }
+
+
+}

@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COCOBODBUSAPP">
         <activity
+            android:name=".UserBus_search"
+            android:exported="false" />
+        <activity
             android:name=".Login_Activity"
             android:exported="false" />
         <activity

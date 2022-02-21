@@ -90,6 +90,16 @@
                     android:background="@drawable/black_round_button"
                     android:text="NEXT" />
 
+                <TextView
+                    android:id="@+id/registerBtn"
+                    android:layout_below="@+id/loginBtn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register Your Bus here"
+                    android:textColor="#2196F3"/>
+
             </RelativeLayout>
 
 
