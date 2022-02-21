@@ -1,5 +1,11 @@
 package com.example.cocobodbusapp;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +15,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private static final String TAG = "Bus feed list Adapter";
 
     ArrayList<BusFeed> arrayList;
 
+
     public RecyclerAdapter(ArrayList<BusFeed> arrayList) {
         this.arrayList = arrayList;
+
     }
 
 
@@ -41,6 +57,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.driverName.setText(busFeed.getDriverName());
         holder.location.setText(busFeed.getLocation());
         holder.division.setText(busFeed.getDivision());
+        holder.trackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Title= busFeed.getVehicleTitle();
+                Log.d(TAG, "onClick: it is working"+Title);
+
+
+                Intent intent= new Intent(v.getContext(),MapsActivity.class);
+                intent.putExtra("vehicleTitle",Title);
+                v.getContext().startActivity(intent);
+
+
+
+
+            }
+        });
 
 
     }
@@ -65,6 +97,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+
+            Context context=itemView.getContext();
             vehicleImage = itemView.findViewById(R.id.VehicleImage);
             vehicleTitle = itemView.findViewById(R.id.VehicleTitle);
             morningStatus = itemView.findViewById(R.id.morningStatusUndefined);
