@@ -34,15 +34,16 @@
                     android:layout_height="wrap_content"
                     android:text="BUS REGISTRATION" />
 
-            <TextView
-                android:layout_marginTop="15dp"
-                android:layout_below="@id/header_bus"
-                android:id="@+id/vehicleVerificationLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginStart="30dp"
-                android:text="Vehicle Registration Number" />
+                <TextView
+                    android:fontFamily="@font/poppinsregular"
+                    android:id="@+id/vehicleVerificationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/header_bus"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Vehicle Registration Number"
+                    android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/vehicleVerifiacationET"
@@ -58,6 +59,7 @@
 
                 <TextView
                     android:id="@+id/divisionLabel"
+                    android:fontFamily="@font/poppinsregular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/vehicleVerifiacationET"
@@ -79,6 +81,7 @@
                     android:padding="15dp" />
 
                 <TextView
+                    android:fontFamily="@font/poppinsregular"
                     android:id="@+id/destinationLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,6 +106,7 @@
 
                 <TextView
                     android:id="@+id/drivernameLbael"
+                    android:fontFamily="@font/poppinsregular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/destinationET"
@@ -126,6 +130,7 @@
 
                 <TextView
                     android:id="@+id/passwordLabel"
+                    android:fontFamily="@font/poppinsregular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/driversnameET"
@@ -147,6 +152,7 @@
 
                 <TextView
                     android:id="@+id/confirmPasswordLabel"
+                    android:fontFamily="@font/poppinsregular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/passwordET"
@@ -173,9 +179,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/confirmpasswordET"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@drawable/black_round_button"
-                    android:text="NEXT" />
+                    android:text="FINISH" />
 
             </RelativeLayout>
 

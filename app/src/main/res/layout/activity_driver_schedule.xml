@@ -14,25 +14,28 @@
         <include android:id="@+id/driverToolbar" layout="@layout/snippet_top_toolbar"></include>
 
         <TextView
-            android:layout_below="@+id/driverToolbar"
+            android:id="@+id/Welcome"
+            android:fontFamily="@font/poppinsbold"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/driverToolbar"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="50dp"
-            android:id="@+id/Welcome"
-            android:text="Welcome,"/>
+            android:text="Welcome," />
 
         <TextView
+            android:id="@+id/driverName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/driverName"
-            android:layout_marginLeft="15dp"
-            android:text="Mr.Kwabena Ntim"
             android:layout_below="@+id/Welcome"
-            />
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="Mr.Kwabena Ntim" />
 
         <TextView
             android:id="@+id/instruction"
+            android:fontFamily="@font/poppinsregular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/driverName"
@@ -40,15 +43,14 @@
             android:text="Please select your available times" />
 
         <TextView
+            android:id="@+id/allWeekLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/allWeekLabel"
-            android:layout_marginLeft="25dp"
-            android:text="All Week"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
             android:layout_below="@+id/instruction"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:text="All Week" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/allWeekSwitch"
@@ -97,6 +99,7 @@
                     android:background="@drawable/daylabelbg">
 
                     <TextView
+                        android:fontFamily="@font/poppinsbold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -151,6 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/morningSwitchLabel"
                         android:textOff="off"
+                        android:shadowColor="#FF5722"
                         android:textOn="on"
                         app:showText="true" />
                 </RelativeLayout>
@@ -218,6 +222,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:text="TUE"
+                                android:fontFamily="@font/poppinsbold"
                                 android:textColor="@color/white"
                                 android:textSize="20sp" />
 
@@ -336,6 +341,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:text="WED"
+                                android:fontFamily="@font/poppinsbold"
                                 android:textColor="@color/white"
                                 android:textSize="20sp" />
 
@@ -451,6 +457,7 @@
                             android:background="@drawable/daylabelbg">
 
                             <TextView
+                                android:fontFamily="@font/poppinsbold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
@@ -574,6 +581,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:text="FRI"
+                                android:fontFamily="@font/poppinsbold"
                                 android:textColor="@color/white"
                                 android:textSize="20sp" />
 

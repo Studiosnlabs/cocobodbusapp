@@ -106,5 +106,10 @@ public class Login_Activity extends AppCompatActivity {
 
 
 
+
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 }

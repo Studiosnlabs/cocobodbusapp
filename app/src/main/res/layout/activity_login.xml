@@ -28,13 +28,15 @@
 
                 <TextView
                     android:id="@+id/header_bus"
-                    android:layout_below="@id/busLogo"
-                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DRIVER lOG IN" />
+                    android:layout_below="@id/busLogo"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="DRIVER LOG IN" />
 
                 <TextView
+                    android:fontFamily="@font/poppinsregular"
                     android:layout_marginTop="15dp"
                     android:layout_below="@id/header_bus"
                     android:id="@+id/vehicleVerificationLabel"
@@ -58,6 +60,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/poppinsregular"
                     android:id="@+id/passwordLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -1,8 +1,19 @@
 package com.example.cocobodbusapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,9 +22,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -28,7 +41,7 @@ import java.util.List;
 public class Driver_schedule extends AppCompatActivity {
 
     private static final String TAG="driver_schedule";
-
+    private static final int REQUEST_LOCATION = 1;
     SwitchMaterial mondayMorning;
     SwitchMaterial mondayEvening;
     SwitchMaterial tuesdayMorning;
@@ -39,12 +52,17 @@ public class Driver_schedule extends AppCompatActivity {
     SwitchMaterial thursdayEvening;
     SwitchMaterial fridayMorning;
     SwitchMaterial fridayEvening;
+    SwitchMaterial allWeek;
 
     TextView mondayDate;
     TextView tuesdayDate;
     TextView wednesdayDate;
     TextView thursdayDate;
     TextView fridayDate;
+
+    ParseGeoPoint geoPoint;
+    LocationManager locationManager;
+    LocationListener locationListener;
 
     public void mondayDate(TextView mondayDateLabel){
 
@@ -853,6 +871,88 @@ public class Driver_schedule extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+            case REQUEST_LOCATION:
+                saveCurrentUserLocation();
+                break;
+        }
+    }
+
+    private void saveCurrentUserLocation() {
+        // requesting permission to get user's location
+        if(ActivityCompat.checkSelfPermission(Driver_schedule.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Driver_schedule.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(Driver_schedule.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        }
+        else {
+            // getting last know user's location
+            MyLocationListener myLocationListener=new MyLocationListener();
+            LocationManager locationManager=(LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria= new Criteria();
+            String bestProvider=locationManager.getBestProvider(criteria,false);
+            Location location = locationManager.getLastKnownLocation(bestProvider);
+            locationManager.requestLocationUpdates(bestProvider,5,10,myLocationListener);
+
+
+            // checking if the location is null
+            if(location != null){
+                // if it isn't, save it to Back4App Dashboard
+                ParseGeoPoint currentUserLocation = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+
+                ParseUser currentUser = ParseUser.getCurrentUser();
+
+                if (currentUser != null) {
+                    currentUser.put("trackPoint", currentUserLocation);
+                    currentUser.saveInBackground();
+                } else {
+                    // do something like coming back to the login activity
+                }
+            }
+            else {
+                // if it is null, do something like displaying error and coming back to the menu activity
+            }
+        }
+    }
+
+//
+//    public void updateLocation(){
+//
+//
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+//            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//
+//            ParseQuery<ParseUser> track=ParseUser.getQuery();
+//            track.whereEqualTo("username",ParseUser.getCurrentUser().getUsername());
+//            track.findInBackground(new FindCallback<ParseUser>() {
+//                @Override
+//                public void done(List<ParseUser> objects, ParseException e) {
+//                    if (e ==null){
+//                        if (objects.size()>0){
+//
+//                            for (ParseUser object:objects) {
+//
+//
+//                                ParseGeoPoint busLocation= new ParseGeoPoint(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
+//                                object.put("trackPoint",busLocation);
+//
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            });
+//
+//        }
+//
+//        }
+
+
+
+
 
 
     @Override
@@ -860,6 +960,12 @@ public class Driver_schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_schedule);
 
+
+
+
+       locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        saveCurrentUserLocation();
 
         TextView Logout=findViewById(R.id.logout);
 
@@ -879,6 +985,10 @@ public class Driver_schedule extends AppCompatActivity {
         thursdayDate=findViewById(R.id.thursdayDate);
         fridayDate=findViewById(R.id.fridayDate);
         TextView profileName=findViewById(R.id.profileName);
+        allWeek=findViewById(R.id.allWeekSwitch);
+        TextView driverName=findViewById(R.id.driverName);
+
+
 
         mondayDate(mondayDate);
         tuesdayDate(tuesdayDate);
@@ -889,6 +999,9 @@ public class Driver_schedule extends AppCompatActivity {
 
 
         profileName.setText(ParseUser.getCurrentUser().getUsername());
+        driverName.setText(ParseUser.getCurrentUser().get("driverName").toString());
+
+
 
 
         Logout.setOnClickListener(new View.OnClickListener() {
@@ -899,6 +1012,50 @@ public class Driver_schedule extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /*All week switch*/
+        allWeek.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked){
+
+                    mondayMorning.setChecked(true);
+                    mondayEvening.setChecked(true);
+                    tuesdayMorning.setChecked(true);
+                    tuesdayEvening.setChecked(true);
+                    wednesdayMorning.setChecked(true);
+                    wednesdayEvening.setChecked(true);
+                    thursdayMorning.setChecked(true);
+                    thursdayEvening.setChecked(true);
+                    fridayMorning.setChecked(true);
+                    fridayEvening.setChecked(true);
+
+
+                }else {
+
+                    mondayMorning.setChecked(false);
+                    mondayEvening.setChecked(false);
+                    tuesdayMorning.setChecked(false);
+                    tuesdayEvening.setChecked(false);
+                    wednesdayMorning.setChecked(false);
+                    wednesdayEvening.setChecked(false);
+                    thursdayMorning.setChecked(false);
+                    thursdayEvening.setChecked(false);
+                    fridayMorning.setChecked(false);
+                    fridayEvening.setChecked(false);
+
+
+                }
+
+
+
+
+
+            }
+        });
+
+
 
         /*monday switches*/
 
@@ -1049,7 +1206,9 @@ public class Driver_schedule extends AppCompatActivity {
     }
 
 
-
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
 
 
 }

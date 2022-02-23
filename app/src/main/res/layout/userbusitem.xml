@@ -25,6 +25,7 @@
                     android:src="@drawable/buscocoa" />
 
                 <TextView
+                    android:fontFamily="@font/poppinsbold"
                     android:id="@+id/VehicleTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +115,7 @@
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:text="Undefined"
-                    android:textColor="@color/grey" />
+                    android:textColor="#FF5722" />
 
                 <TextView
                     android:id="@+id/eveningStatusLabel"
@@ -165,7 +166,7 @@
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:text="Undefined"
-                    android:textColor="@color/grey" />
+                    android:textColor="#FF5722" />
 
                 <TextView
                     android:id="@+id/driverLabel"
@@ -237,6 +238,7 @@
                     android:text="CHED" />
 
                 <TextView
+                    android:textColor="#FF5722"
                     android:id="@+id/trackBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

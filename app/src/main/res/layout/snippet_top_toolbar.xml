@@ -26,6 +26,7 @@
                     android:src="@drawable/ic_baseline_menu_24"/>-->
 
                 <TextView
+                    android:fontFamily="@font/poppinsbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -47,11 +48,14 @@
 
 
                 <TextView
+                    android:fontFamily="@font/poppinsregular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
+                    android:layout_marginRight="20dp"
                     android:id="@+id/logout"
+                    android:textColor="@color/grey"
                     android:text="Logout" />
 <!--                <ImageView-->
 <!--                    android:layout_width="25dp"-->

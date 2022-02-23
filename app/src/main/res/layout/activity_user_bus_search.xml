@@ -13,20 +13,21 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.SearchView
-            android:layout_marginTop="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/usertoolbar"
             android:id="@+id/busSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:queryHint="Search Destination"
-            app:iconifiedByDefault="false">
+            android:layout_below="@+id/usertoolbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search Destination">
 
-            <requestFocus/>
+            <requestFocus />
         </androidx.appcompat.widget.SearchView>
 
         <ListView
             android:id="@+id/listview"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/busSearch" />
