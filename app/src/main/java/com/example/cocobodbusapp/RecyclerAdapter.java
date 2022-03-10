@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private static final String TAG = "Bus feed list Adapter";
 
     ArrayList<BusFeed> arrayList;
+
 
 
     public RecyclerAdapter(ArrayList<BusFeed> arrayList) {
@@ -50,6 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         BusFeed busFeed = arrayList.get(position);
 
 
+
         holder.vehicleImage.setImageBitmap(busFeed.getVehicleImage());
         holder.vehicleTitle.setText(busFeed.getVehicleTitle());
         holder.morningStatus.setText(busFeed.getMorningStatus());
@@ -60,13 +64,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.trackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Title= busFeed.getVehicleTitle();
-                Log.d(TAG, "onClick: it is working"+Title);
+                holder.progressBar2.setVisibility(View.VISIBLE);
+                try {
+
+                    String Title= busFeed.getVehicleTitle();
+                    Intent intent= new Intent(v.getContext(),MapsActivity.class);
+                    intent.putExtra("vehicleTitle",Title);
+                    v.getContext().startActivity(intent);
+
+                   // holder.progressBar2.setVisibility(View.GONE);
+                }catch (NullPointerException e){
+                    Log.d(TAG, "onClick: could not fetch title");
+                }
+          
 
 
-                Intent intent= new Intent(v.getContext(),MapsActivity.class);
-                intent.putExtra("vehicleTitle",Title);
-                v.getContext().startActivity(intent);
+             
 
 
 
@@ -93,9 +106,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView division;
         TextView trackBtn;
         ImageView favoriteBtn;
+        ProgressBar progressBar2;
+        ParseGeoPoint geoPoint;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
 
 
             Context context=itemView.getContext();
@@ -108,6 +124,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             division = itemView.findViewById(R.id.divisionNameDisplay);
             trackBtn = itemView.findViewById(R.id.trackBtn);
             favoriteBtn = itemView.findViewById(R.id.unFavorite);
+            progressBar2=itemView.findViewById(R.id.itemProgressbar);
+
 
 
         }

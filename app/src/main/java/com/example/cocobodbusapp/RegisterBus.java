@@ -54,7 +54,7 @@ public class RegisterBus extends AppCompatActivity {
     }
 
     public void nextIntent(){
-        Intent intent= new Intent(this,RegisterBus_SetDestination.class);
+        Intent intent= new Intent(this,Driver_schedule.class);
         startActivity(intent);
 
     }
@@ -184,4 +184,5 @@ public class RegisterBus extends AppCompatActivity {
 
 
     }
+
 }

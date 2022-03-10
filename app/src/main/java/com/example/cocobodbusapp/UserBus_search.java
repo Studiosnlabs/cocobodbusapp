@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ import java.util.Locale;
 public class UserBus_search extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private static final String TAG = "UserBus Search";
+    private View.OnClickListener onItemClickListener;
     Bitmap vehicleImage;
     String vehicleTitle;
     String vehicleTitleS;
@@ -55,6 +57,8 @@ public class UserBus_search extends AppCompatActivity implements SearchView.OnQu
     String[] destinationList;
     ListViewAdapter adapter;
     String busDestined;
+    ProgressBar progressBar;
+    TextView track;
 
     ArrayList<Destinations> darrayList=new ArrayList<Destinations>();
 
@@ -64,9 +68,12 @@ public class UserBus_search extends AppCompatActivity implements SearchView.OnQu
 
 
 
+
+
     public void searchByDestination(String destination){
 
 
+        progressBar.setVisibility(View.VISIBLE);
         ParseQuery<ParseUser> busQuery=ParseUser.getQuery();
         busQuery.whereContains("routeStops",destination);
 
@@ -104,7 +111,7 @@ public class UserBus_search extends AppCompatActivity implements SearchView.OnQu
                                             @Override
                                             public void done(List<ParseObject> objects, ParseException e) {
                                                 if (e==null){
-
+                                                    progressBar.setVisibility(View.GONE);
                                                     if (objects.size()>0){
                                                         for (ParseObject object:objects) {
                                                            String morningStatusD=object.getString("morning");
@@ -119,6 +126,7 @@ public class UserBus_search extends AppCompatActivity implements SearchView.OnQu
                                                             RecyclerAdapter recyclerAdapter= new RecyclerAdapter(arrayList);
                                                             recyclerView.setAdapter(recyclerAdapter);
                                                             recyclerView.setLayoutManager(new LinearLayoutManager(UserBus_search.this));
+
                                                             Log.d(TAG, "done: view set");
 
                                                         }
@@ -196,6 +204,11 @@ public class UserBus_search extends AppCompatActivity implements SearchView.OnQu
         setContentView(R.layout.activity_user_bus_search);
         Log.d(TAG, "onCreate: started nicely");
 
+        progressBar=findViewById(R.id.userProgressbar);
+        track=findViewById(R.id.trackBtn);
+
+
+
         destinationList = new String[]{"Tema", "Pokuase", "Madina",
                 "Ashongman", "Kasoa", "Lapaz", "Adenta", "East Legon",
                 "Lakeside","Kwabenya","Sakumono"};
@@ -251,6 +264,7 @@ driverLogin.setOnClickListener(new View.OnClickListener() {
         ParseQuery<ParseObject> busSchedule=ParseQuery.getQuery("Schedule");
         busSchedule.whereEqualTo("date",today);
 
+        progressBar.setVisibility(View.VISIBLE);
         //Todo:change date to today
 
 
@@ -331,6 +345,7 @@ driverLogin.setOnClickListener(new View.OnClickListener() {
                                                 recyclerView.setAdapter(recyclerAdapter);
                                                 recyclerView.setLayoutManager(new LinearLayoutManager(UserBus_search.this));
                                                 Log.d(TAG, "done: view set");
+                                                progressBar.setVisibility(View.GONE);
 
 
 
@@ -374,6 +389,8 @@ driverLogin.setOnClickListener(new View.OnClickListener() {
 
 //                String itemText=((TextView) view).getText().toString();
 
+
+
                TextView textView=(TextView) view.findViewById(R.id.destinationName);
                String txt=textView.getText().toString();
 
@@ -383,8 +400,6 @@ driverLogin.setOnClickListener(new View.OnClickListener() {
         });
 
 
-//
-//
 
 
 

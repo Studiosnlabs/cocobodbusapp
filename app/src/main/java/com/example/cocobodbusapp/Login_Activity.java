@@ -16,6 +16,8 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.util.Locale;
+
 public class Login_Activity extends AppCompatActivity {
 
     EditText busVerificationNumber;
@@ -79,7 +81,7 @@ public class Login_Activity extends AppCompatActivity {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i==KeyEvent.KEYCODE_ENTER && keyEvent.getAction()==KeyEvent.ACTION_DOWN){
 
-                    String UserNameIN = busVerificationNumber.getText().toString();
+                    String UserNameIN = busVerificationNumber.getText().toString().toUpperCase(Locale.ROOT);
                     String PassWordIN = loginPassword.getText().toString();
                     ParseUser.logInInBackground(UserNameIN, PassWordIN, new LogInCallback() {
                         @Override

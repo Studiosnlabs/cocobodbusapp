@@ -3,6 +3,8 @@ package com.example.cocobodbusapp;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -12,6 +14,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 public class MyLocationListener implements LocationListener {
+    private static final String TAG="My LocationListener";
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
@@ -36,6 +39,7 @@ public class MyLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(@NonNull List<Location> locations) {
+
 
     }
 

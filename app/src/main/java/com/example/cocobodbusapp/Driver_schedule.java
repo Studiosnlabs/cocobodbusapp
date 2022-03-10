@@ -38,7 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class Driver_schedule extends AppCompatActivity {
+public class Driver_schedule extends AppCompatActivity  {
 
     private static final String TAG="driver_schedule";
     private static final int REQUEST_LOCATION = 1;
@@ -59,10 +59,13 @@ public class Driver_schedule extends AppCompatActivity {
     TextView wednesdayDate;
     TextView thursdayDate;
     TextView fridayDate;
+    Toast dayToast;
+    Toast allWeekToast;
 
     ParseGeoPoint geoPoint;
     LocationManager locationManager;
     LocationListener locationListener;
+    protected Context context;
 
     public void mondayDate(TextView mondayDateLabel){
 
@@ -588,7 +591,7 @@ public class Driver_schedule extends AppCompatActivity {
                             }
 
 
-                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
 
                         }
@@ -676,7 +679,7 @@ public class Driver_schedule extends AppCompatActivity {
                             }
 
 
-                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
 
                         }
@@ -768,7 +771,7 @@ public class Driver_schedule extends AppCompatActivity {
                             }
 
 
-                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
 
                         }
@@ -856,7 +859,7 @@ public class Driver_schedule extends AppCompatActivity {
                             }
 
 
-                            Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(Driver_schedule.this, "Monday evening set to available", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onCheckedChanged: Monday morning set to available ");
 
                         }
@@ -877,29 +880,40 @@ public class Driver_schedule extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_LOCATION:
-                saveCurrentUserLocation();
+                saveCurrentBusLocation();
                 break;
         }
     }
 
-    private void saveCurrentUserLocation() {
+    private void saveCurrentBusLocation() {
+
+
         // requesting permission to get user's location
         if(ActivityCompat.checkSelfPermission(Driver_schedule.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Driver_schedule.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(Driver_schedule.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         }
         else {
             // getting last know user's location
-            MyLocationListener myLocationListener=new MyLocationListener();
+            MyLocationListener myLocationListener=new MyLocationListener(){
+
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
+                    Toast.makeText(Driver_schedule.this, "Updating location", Toast.LENGTH_SHORT).show();
+                    super.onLocationChanged(location);
+                }
+            };
             LocationManager locationManager=(LocationManager) getSystemService(LOCATION_SERVICE);
+
             Criteria criteria= new Criteria();
             String bestProvider=locationManager.getBestProvider(criteria,false);
             Location location = locationManager.getLastKnownLocation(bestProvider);
-            locationManager.requestLocationUpdates(bestProvider,5,10,myLocationListener);
+            locationManager.requestLocationUpdates(bestProvider,1L,1f,myLocationListener);
 
 
             // checking if the location is null
             if(location != null){
                 // if it isn't, save it to Back4App Dashboard
+                Toast.makeText(this, "Location Changed! updating trackPoint", Toast.LENGTH_SHORT).show();
                 ParseGeoPoint currentUserLocation = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
 
                 ParseUser currentUser = ParseUser.getCurrentUser();
@@ -962,10 +976,13 @@ public class Driver_schedule extends AppCompatActivity {
 
 
 
+        dayToast=Toast.makeText(getApplicationContext(),"Updating Schedule",Toast.LENGTH_SHORT);
+        allWeekToast=Toast.makeText(getApplicationContext(),"Updating Schedule",Toast.LENGTH_SHORT);
+
 
        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        saveCurrentUserLocation();
+        saveCurrentBusLocation();
 
         TextView Logout=findViewById(R.id.logout);
 
@@ -1020,6 +1037,7 @@ public class Driver_schedule extends AppCompatActivity {
 
                 if (isChecked){
 
+
                     mondayMorning.setChecked(true);
                     mondayEvening.setChecked(true);
                     tuesdayMorning.setChecked(true);
@@ -1030,6 +1048,9 @@ public class Driver_schedule extends AppCompatActivity {
                     thursdayEvening.setChecked(true);
                     fridayMorning.setChecked(true);
                     fridayEvening.setChecked(true);
+
+                    allWeekToast.setText("Schedule updated to available all week");
+                    allWeekToast.show();
 
 
                 }else {
@@ -1044,6 +1065,9 @@ public class Driver_schedule extends AppCompatActivity {
                     thursdayEvening.setChecked(false);
                     fridayMorning.setChecked(false);
                     fridayEvening.setChecked(false);
+
+                    allWeekToast.setText("Schedule updated to unavailable all week");
+                    allWeekToast.show();
 
 
                 }
@@ -1065,7 +1089,16 @@ public class Driver_schedule extends AppCompatActivity {
 
           morningParseIt(isChecked,mondayDate);
 
-                Toast.makeText(Driver_schedule.this, "Monday morning schedule updated", Toast.LENGTH_SHORT).show();
+
+          if (allWeek.isChecked()){
+              dayToast.setText("Updating schedule..");
+              dayToast.cancel();
+          }
+          else {
+              dayToast.setText( "Monday morning schedule updated");
+              dayToast.show();
+
+          }
 
 
             }
@@ -1078,8 +1111,15 @@ public class Driver_schedule extends AppCompatActivity {
 
              eveningParseIt(isChecked,mondayDate);
 
-                Toast.makeText(Driver_schedule.this, "Monday evening schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Monday evening schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1095,8 +1135,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 morningParseIt(isChecked,tuesdayDate);
 
-                Toast.makeText(Driver_schedule.this, "Tuesday morning schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Tuesday morning schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1108,8 +1155,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 eveningParseIt(isChecked,tuesdayDate);
 
-                Toast.makeText(Driver_schedule.this, "Tuesday evening schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Tuesday evening schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1123,8 +1177,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 morningParseIt(isChecked,wednesdayDate);
 
-                Toast.makeText(Driver_schedule.this, "Wednesday morning schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Wednesday morning schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1136,8 +1197,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 eveningParseIt(isChecked,wednesdayDate);
 
-                Toast.makeText(Driver_schedule.this, "Wednesday evening schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Wednesday evening schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1152,8 +1220,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 morningParseIt(isChecked,thursdayDate);
 
-                Toast.makeText(Driver_schedule.this, "Thursday morning schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.cancel();
+                    dayToast.setText("Updating schedule..");
+                }
+                else {
+                    dayToast.setText( "Thursday morning schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1165,8 +1240,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 eveningParseIt(isChecked,thursdayDate);
 
-                Toast.makeText(Driver_schedule.this, "Thursday evening schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Thursday evening schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1182,8 +1264,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 morningParseIt(isChecked,fridayDate);
 
-                Toast.makeText(Driver_schedule.this, "Friday morning schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Friday morning schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1195,8 +1284,15 @@ public class Driver_schedule extends AppCompatActivity {
 
                 eveningParseIt(isChecked,fridayDate);
 
-                Toast.makeText(Driver_schedule.this, "Friday evening schedule updated", Toast.LENGTH_SHORT).show();
 
+                if (allWeek.isChecked()){
+                    dayToast.setText("Updating schedule..");
+                    dayToast.cancel();
+                }
+                else {
+                    dayToast.setText( "Monday evening schedule updated");
+                    dayToast.show();
+                }
 
             }
         });
@@ -1207,8 +1303,9 @@ public class Driver_schedule extends AppCompatActivity {
 
 
     public void onBackPressed(){
+        finish();
         super.onBackPressed();
     }
 
 
-}
+   }

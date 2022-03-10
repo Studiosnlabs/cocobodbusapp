@@ -2,6 +2,8 @@ package com.example.cocobodbusapp;
 
 import android.app.Application;
 
+import com.mapbox.android.core.location.LocationEngineProvider;
+import com.mapbox.search.MapboxSearchSdk;
 import com.parse.Parse;
 
 public class App extends Application {
@@ -16,6 +18,13 @@ public class App extends Application {
                 .clientKey(getString(R.string.back4app_client_key))
                 .server(getString(R.string.back4app_server_url))
                 .build()
+
+        );
+
+        MapboxSearchSdk.initialize(
+                this,
+                getResources().getString(R.string.mapbox_access_token),
+                LocationEngineProvider.getBestLocationEngine(this)
 
         );
 
