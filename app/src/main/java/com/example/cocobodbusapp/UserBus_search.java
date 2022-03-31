@@ -331,6 +331,12 @@ driverLogin.setOnClickListener(new View.OnClickListener() {
                                                         }
 
 
+                                                        recyclerView=findViewById(R.id.recyclerView);
+                                                        RecyclerAdapter recyclerAdapter= new RecyclerAdapter(arrayList);
+                                                        recyclerView.setAdapter(recyclerAdapter);
+                                                        recyclerView.setLayoutManager(new LinearLayoutManager(UserBus_search.this));
+                                                        Log.d(TAG, "done: view set");
+                                                        progressBar.setVisibility(View.GONE);
 
 
                                                     }
@@ -340,12 +346,7 @@ driverLogin.setOnClickListener(new View.OnClickListener() {
                                                 });
 
 
-                                                recyclerView=findViewById(R.id.recyclerView);
-                                                RecyclerAdapter recyclerAdapter= new RecyclerAdapter(arrayList);
-                                                recyclerView.setAdapter(recyclerAdapter);
-                                                recyclerView.setLayoutManager(new LinearLayoutManager(UserBus_search.this));
-                                                Log.d(TAG, "done: view set");
-                                                progressBar.setVisibility(View.GONE);
+
 
 
 

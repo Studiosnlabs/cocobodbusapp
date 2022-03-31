@@ -68,7 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 try {
 
                     String Title= busFeed.getVehicleTitle();
-                    Intent intent= new Intent(v.getContext(),MapsActivity.class);
+                    Intent intent= new Intent(v.getContext(),UserMap.class);
                     intent.putExtra("vehicleTitle",Title);
                     v.getContext().startActivity(intent);
 

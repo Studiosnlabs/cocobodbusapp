@@ -84,13 +84,15 @@ public class RegisterBus extends AppCompatActivity {
                 if (e==null){
                     Log.d(TAG, "done: Sign up Successful");
 
+                    nextIntent();
+
                 } else{
                     Log.d(TAG, "done: Sign up failed "+ e.toString());
                 }
             }
         });
 
-            nextIntent();
+
 
     }
 

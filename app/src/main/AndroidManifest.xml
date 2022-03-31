@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COCOBODBUSAPP">
         <activity
+            android:name=".MarkerFollowingRouteActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserMap"
             android:exported="false" />
         <!--
