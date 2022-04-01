@@ -620,36 +620,8 @@ public class UserMap extends AppCompatActivity implements MapboxMap.OnMapClickLi
 
     public void relocateDriver() {
 
-//        new java.util.Timer().schedule(
-//                new java.util.TimerTask() {
-//                    @Override
-//                    public void run() {
-//
-//                        UserMap.runOnUiThread(new Runnable() {
-//                            public void run() {
-//                                Toast.makeText(activity, "Hello, world!", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//
-//                        Log.d(TAG, "run: updating driver loc");
-//                        locateBus();
-//                        reLoadMap();
-//                    }
-//                },
-//                120000
-//        );
 
-        handler.postDelayed(new Runnable() {
-            public void run() {
 
-                Log.d(TAG, "run: updating driver loc");
-                        locateBus();
-                        reLoadMap();
-
-                        handler.postDelayed(this,120000);
-
-            }
-        }, 120000);
 
 
 
@@ -682,6 +654,7 @@ public class UserMap extends AppCompatActivity implements MapboxMap.OnMapClickLi
         mapView.onCreate(savedInstanceState);
         pickUpBtn = findViewById(R.id.setPickupBtn);
         refreshMapButton=findViewById(R.id.refreshMap);
+
         SearchBottomSheetView searchBottomSheetView = findViewById(R.id.search_view);
 
         pickUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -747,13 +720,18 @@ public class UserMap extends AppCompatActivity implements MapboxMap.OnMapClickLi
         }, 5000);
 
 
-//        new Handler().postDelayed(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//
-//                                       relocateDriver();
-//                                    }
-//                                }, 120000);
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+
+                Log.d(TAG, "run: updating driver loc");
+                locateBus();
+                reLoadMap();
+
+                handler.postDelayed(this,60000);
+
+            }
+        }, 60000);
 
 
 
